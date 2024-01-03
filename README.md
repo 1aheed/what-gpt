@@ -1,0 +1,55 @@
+# What-GPT
+
+This bot allows users to interact with ChatGPT & DALL-E via WhatsApp text messages, providing automated responses based on their questions, and commands with message history saved on Firebase Realtime Database. It allows to generate images with Dall-E with prompts given inside whatsapp. It also allows to set the personality of bot to Funny, Genius or anything you like.
+
+[![Deploy on Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/W5QDDg?referralCode=6Ax_Sv)
+
+## Technologies
+
+- [OpenAI](https://beta.openai.com/)
+- [Whatsapp-Web](https://github.com/pedroslopez/whatsapp-web.js/)
+- [Firebase-RTDB](https://console.firebase.google.com/)
+
+## Run the project
+
+Clone this project with the command:
+
+```bash
+  git clone https://github.com/imasimali/what-gpt.git
+```
+
+Get OpenAI api key for .env from [OpenAI](https://platform.openai.com/account/api-keys/).
+
+Go to the .env.example file and rename it to .env, and change the necessary values ​​for it to work.
+
+Now install the project dependencies with the command:
+
+```bash
+  npm install
+```
+
+Finally run the command below to start the project and read the QR Code with your Whasapp to connect with the service.
+
+```bash
+  npm start
+```
+
+### Optional (Save Message History on Firebase):
+
+Create a Firebase Project. Goto Realtime Database and Create it. Copy the Database URL from Project Settings.
+Use the following rules for Firebase Realtime Database to allow access and prevent deletion.
+
+```bash
+  {
+    "rules":{
+        ".read":false,
+        ".write":false,
+        "$phone":{
+          ".read":true,
+          ".write":"newData.exists()"
+        }
+    }
+  }
+```
